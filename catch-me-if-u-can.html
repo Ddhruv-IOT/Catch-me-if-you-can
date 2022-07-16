@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> Catch-me-if-u-can </title>
+	</head>
+
+	<style type="text/css">
+			body {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+		user-select: none;
+	}
+
+	.warpper {
+		background: linear-gradient(red, green);
+		height: 100vh;
+		width: 100vw;
+		padding: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.playground {
+		background: yellow;
+		height: 300px;
+		width: 300px;
+		position: absolute;
+		transition: 0.5s;
+		box-shadow: 2px 2px 10px white, 2px 2px 10px black;
+	}
+
+	.object-wrapper {
+		padding: 10px;
+		transition: 0.5s;
+	}
+
+	.object {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 50px;
+		width: 100px;
+		background: red;
+		color: white;
+		border: 2px 2px 1px white;
+		border-radius: 20px 5px 20px 5px;
+	}
+
+	.object .p1 {
+		cursor: crosshair;
+	}
+
+	.mobile-player {
+		height: 20px;
+		width: 20px;
+		border-radius: 80%;
+		background: blue;
+		display: none;
+	}
+
+	h1 {
+		top:  1%;
+		position: fixed;
+		text-shadow:  0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+	color: #fff
+	}
+
+	.fltt {
+		left: 1%;
+		position: fixed;
+		animation: mymove 10s infinite;
+	}
+	#fltt2 {
+
+		left: 30%;
+	}
+
+	#fltt3{
+		left: 50%;
+	}
+
+
+	#fltt4{
+		left: 70%;
+	}
+
+	#fltt5{
+		left: 99%;
+	}
+	@keyframes mymove {
+  from {top: 0px;}
+  to {top: 1000px;}
+}
+
+.d{
+	padding: 10px;
+	top:  0%;
+	position: fixed;
+	left: 85%;
+	background: black;
+	width: 99%;
+	color: white;
+}
+
+.a{
+	padding: 10px;
+	top:  90%;
+	position: fixed;
+	left: 0%;
+	background: black;
+	width: 15%;
+	color: white;
+}
+	</style>
+
+	<body>
+		<audio  autoplay id="ck"> <source src='assets/next.mp3'></audio>
+			<audio  autoplay id="ck1"> <source src='assets/fly.mp3'></audio>
+				<audio  autoplay id="ck2"> <source src='assets/bk.mp3'></audio>
+
+		<div class="warpper">
+			<h1> Catch Me if you can :) </h1>
+			<div class="a"> <p onclick="tts(); alert('Sound Activated'); document.getElementById('ck2').play();  openFullscreen()"> Click here to activate sounds </p></div>
+			<div class="d">
+				<p>Score: <span id="score">0</span> </p>
+				<p> Top score: <span id="topscore">Loading...</span> </p>
+				<p> <b>Tip:</b> Lesser is Better </p>
+			</div>
+		  <img id="fltt1" class="fltt" src='assets/e.png' height=30px width=30px></img>
+		  <img id="fltt2" class="fltt" src='assets/e.png' height=30px width=30px></img>
+		  <img id="fltt3" class="fltt" src='assets/e.png' height=30px width=30px></img>
+		  <img id="fltt4" class="fltt" src='assets/e.png' height=30px width=30px></img>
+		  <img id="fltt5" class="fltt" src='assets/e.png' height=30px width=30px></img>
+			<div class="playground" id="pg1">
+				<div class="object-wrapper">
+					<div class="object" id="try">
+						<p class="p1" id="p1"> Click Me </p>
+					</div>
+				</div>
+				<div class="mobile-player"></div>
+			</div>
+		</div>
+	</body>
+	</html>
+
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script type="text/javascript">
+		var msg = new SpeechSynthesisUtterance();
+	msg.text = "Oh no you caught me..";
+	function tts(){
+		msg.volume = 1;
+		msg.rate = 1;
+	window.speechSynthesis.speak(msg);
+	}
+
+	let random_text = [ "U can't catch me", "Lol :) ", "Its Impossible", "stay away", ";)", "Go...", "Click...Click..Haha","<img src='assets/e.png' height=40px width=40px></img>"]
+
+	var elem = document.getElementsByTagName("body")[0];
+	function openFullscreen() {
+	  if (elem.requestFullscreen) {
+	    elem.requestFullscreen();
+	  } else if (elem.webkitRequestFullscreen) { /* Safari */
+	    elem.webkitRequestFullscreen();
+	  } else if (elem.msRequestFullscreen) { /* IE11 */
+	    elem.msRequestFullscreen();
+	  }
+	}
+
+
+	window.onload = function() {
+		const wrp = document.querySelector(".warpper");
+		const btn_txt = document.querySelector(".p1");
+		let score = 0;
+
+		var randomWidth = () => {
+			document.getElementById('ck2').volume=0.5;
+	  	let x = 0;
+	  	x = getRndInteger(30, 70);
+	  	document.querySelector(".playground").style.width = x + "%";
+	  	document.querySelector(".playground").setAttribute("data-value", x + "%");
+	  	let randomNumber = Math.floor(Math.random()*random_text.length);
+			btn_txt.innerHTML= random_text[randomNumber];
+			document.getElementById('score').innerHTML = score;
+			document.getElementById('topscore').innerHTML = localStorage.getItem("topscore");
+			document.getElementById('ck2').play();
+
+			document.getElementById("try").onmouseover = function() {
+				if (document.getElementById("p1").innerHTML == "Lol :) "){
+
+	   				 document.getElementById("ck").play();
+	  }
+
+	  if (document.getElementById("p1").innerHTML == "U can't catch me"){
+
+	   				 document.getElementById("ck1").play();
+	  }
+
+	  if (document.getElementById("p1").innerHTML == "Its Impossible"){
+
+	   				 document.getElementById("ck").play();
+	  }
+	  if (document.getElementById("p1").innerHTML == "stay away"){
+
+	   				 document.getElementById("ck1").play();
+	  }
+	}
+		};
+
+		var getRndInteger = (min, max) => {
+			return Math.floor(Math.random() * (max - min)) + min;
+		};
+
+		randomWidth();
+
+		var interval = setInterval(() => {
+	  	randomWidth();
+		}, 2000);
+
+		let stopbtn = document.querySelector(".object-wrapper");
+	  stopbtn.addEventListener("mouseover", function () {
+			stopbtn.style.transform = `translate(${getRndInteger(-10, 99)}%, ${getRndInteger(-10, 99)}%)`
+		  wrp.style.background = `linear-gradient(${getRandomColor()}, ${getRandomColor()})`;
+		  this.style.bottom = "auto";
+		  score = score + 1;
+	  })
+
+		document.querySelector(".p1").addEventListener("click", function () {
+			document.getElementById('ck2').pause()
+			tts();
+			alert(`You won with a Score of : ${score} points`)
+			console.log(localStorage.getItem("topscore"))
+			if (localStorage.getItem("topscore") == null){
+			localStorage.setItem("topscore", score)
+		}
+		if (localStorage.getItem("topscore") > score){
+			localStorage.setItem("topscore", score)
+		}
+	  	clearInterval(interval);
+	  	wrp.style.background = "black";
+	  	stopbtn.style.display = "none";
+	  	document.getElementById("pg1").innerHTML = "<b align=\"center\">Press Ctrl + R to restart.<b>"
+		});
+	}
+
+	function getRandomColor() {
+	  var letters = "0123456789ABCDEF";
+	  var color = "#";
+	  for (var i = 0; i < 6; i++) {
+	    color += letters[Math.floor(Math.random() * 16)];
+	  }
+	  return color;
+	}
+
+	</script>
+
+	<!--
+	-> Custom cursor
+	-> sounds 
+	-> capions
+	-> images
+	-->
