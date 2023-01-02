@@ -1,0 +1,115 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+.warpper {
+  background: linear-gradient(red, green);
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.playground {
+  background: yellow;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  transition: 0.5s;
+  box-shadow: 2px 2px 10px white, 2px 2px 10px black;
+}
+
+.object-wrapper {
+  padding: 10px;
+  transition: 0.5s;
+}
+
+.object {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100px;
+  background: red;
+  color: white;
+  border: 2px 2px 1px white;
+  border-radius: 20px 5px 20px 5px;
+}
+
+.object .p1 {
+  cursor: crosshair;
+}
+
+.mobile-player {
+  height: 20px;
+  width: 20px;
+  border-radius: 80%;
+  background: blue;
+  display: none;
+}
+
+h1 {
+  top: 1%;
+  position: fixed;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
+    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+  color: #fff;
+}
+
+.fltt {
+  left: 1%;
+  position: fixed;
+  animation: mymove 10s infinite;
+}
+
+#fltt2 {
+  left: 30%;
+}
+
+#fltt3 {
+  left: 50%;
+}
+
+#fltt4 {
+  left: 70%;
+}
+
+#fltt5 {
+  left: 99%;
+}
+
+@keyframes mymove {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 1000px;
+  }
+}
+
+.d {
+  padding: 10px;
+  top: 0%;
+  position: fixed;
+  left: 85%;
+  background: black;
+  width: 99%;
+  color: white;
+}
+
+.a {
+  padding: 10px;
+  top: 90%;
+  position: fixed;
+  left: 0%;
+  background: black;
+  width: 15%;
+  color: white;
+}
