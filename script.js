@@ -7,7 +7,7 @@ function tts() {
 	window.speechSynthesis.speak(msg);
 }
 
-let random_text = ["U can't catch me", "Lol :) ", "Its Impossible", "stay away", ";)", "Go...", "Click...Click..Haha", "<img src='assets/e.png' height=40px width=40px></img>"]
+let random_text = ["U can't catch me", "Lol :) ", "Its Impossible", "stay away", ";)", "Go...", "Click...Click..Haha", "<img src='assets/laugh.png' height=40px width=40px></img>"]
 
 var elem = document.getElementsByTagName("body")[0];
 
